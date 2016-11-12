@@ -21,7 +21,8 @@ Commands are read on a line by line basis, and if the last character
 of a line is \\, the line is extended to the next. Once a command is
 Read, the configuration is changed or action is executed. Most the
 time Fvwm will not wait for a command to complete to move on. This can
-rarely lead to race conditions.
+sometimes lead to race conditions -- [/Config/FunctionSynchronisation](
+{{ "/Config/FunctionSynchronisation" | prepend: site.baseurl }}).
 
 Commands can be sent to Fvwm while it is running though [/Modules/FvwmConsole](
 {{ "/Modules/FvwmConsole" | prepend: site.baseurl }}) or [/Modules/FvwmCommandS](
@@ -73,7 +74,10 @@ though the manpage for it to find more info. You can also find the manpage
 online [here](http://fvwm.org/documentation/manpages/). The online version
 contains a table of contents to make finding info in the manpage a little easier.
 
-This [Wiki]({{ "/" | prepend: site.baseurl }}) is a collection of commands,
-examples and their descriptions. Here is overview: [/Config](
+The [FvwmWiki]({{ "/" | prepend: site.baseurl }}) contains a collection of config
+examples and their descriptions. Here is a starting point: [/Config](
 {{ "/Config" | prepend: site.baseurl }})
+
+Fvwm 2.6.7 comes with a [/DefaultConfig]({{ "/DefaultConfig" | prepend: site.baseurl }})
+that can be used as an example or starting point when building your own config.
 

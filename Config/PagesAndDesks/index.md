@@ -26,8 +26,8 @@ GotoDesk 1 0 6
 # One desk backwards min of 0
 GotoDesk -1 0 6
 
-# GotoDesk [absolute] [relative]
-# GotoDesk 5 (0 is reference)
+# GotoDesk [relative] [absolute]
+# GotoDesk 5
 GotoDesk 0 5
 # GotoDesk 2
 GotoDesk 0 2
