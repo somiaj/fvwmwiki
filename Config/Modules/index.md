@@ -11,6 +11,6 @@ description : |
 
 ---
 
-# Conditional Commands
+# Fvwm Modules
 
 

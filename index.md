@@ -22,10 +22,10 @@ https://jekyllrb.com/), which is what is used to generate static
 pages on <https://github.com>.
 
 A copy of the code to generate the wiki can be found at
-<https://github.com/somiaj/fvwmwiki>. Currently this code
-requires a custom [pygments](http://pygments.org/) lexer
-to create the syntax highlight for Fvwm configurations.
-This is currently unavailable (to be changed).
+<https://github.com/somiaj/fvwmwiki>.
+
+A [/Todo]({{ "/Todo" | prepend: site.baseurl }}) list of the pages
+that need to be updated/created to complete this migration to Jekyll.
 
 ## List of main pages
 
