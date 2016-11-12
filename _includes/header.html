@@ -1,0 +1,25 @@
+<header class="site-header">
+
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <h2 class="page-title">
+  {% assign cur_link = site.baseurl %}
+  {% if page.url == "/" %}
+    <a href="{{ cur_link }}">FvwmWiki</a>
+  {% else %}
+    {% assign links = page.url | split: '/' %}
+    {% for link in links %}
+      {% assign cur_link = cur_link | append: link | append: "/" %}
+      {% if link == "" %}
+        <a href="{{ cur_link }}">FvwmWiki</a>
+      {% else %}
+        <b>/</b><a href="{{ cur_link }}">{{ link }}</a>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+  </h2>
+
+  <div style="float: right; padding: 5px 25px 5px 5px;">
+  <a href="http://fvwm.org">
+  <img src="{{ "/img/fvwm-logo_sml.png" | prepend: site.baseurl }}"></a>
+
+</header>

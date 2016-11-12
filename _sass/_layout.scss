@@ -1,0 +1,124 @@
+/**
+ * Site header
+ */
+.site-header {
+    border-top: 0px solid $grey-color-dark;
+    border-bottom: 1px solid $grey-color-light;
+    height: 48px;
+
+    // Positioning context for the mobile navigation icon
+    position: relative;
+}
+
+
+
+
+/**
+ * Site footer
+ */
+.site-footer {
+    border-top: 1px solid $grey-color-light;
+    padding: $spacing-unit 0;
+}
+
+
+
+/**
+ * Page content
+ */
+.page-content {
+    padding: $spacing-unit 0;
+}
+
+.page-title {
+        display: inline-block;
+        margin-top: 15px;
+}
+
+.page-nav {
+        display: inline-block;
+        float: right;
+        position: absolute;
+        bottom: 25px;
+        right: 35px;
+
+	> a {
+        	border: 2px solid #3d3d3d;
+        	background: #eeeecc;
+        	padding: 0px 10px 0px 10px;
+        	border-radius: 5px;
+	}
+}
+
+p.title-indent
+{
+	text-indent: -20px;
+	margin-left: 40px;
+}
+
+/**
+ * Markdown TOC full
+ */
+#toc-full {
+	border: 2px solid #3d3d3d;
+	list-style-position: inside;
+	list-style-type: none;
+	padding: 10px;
+	background: #ddf;
+	border-radius: 15px;
+        margin-left: 5px;
+
+}
+
+/**
+ * Markdown TOC float
+ */
+#markdown-toc {
+	border: 2px solid #3d3d3d;
+	float: right;
+	list-style-position: inside;
+	list-style-type: none;
+        max-width: 300px;
+	padding: 10px;
+	background: #ddf;
+	border-radius: 15px;
+        margin-left: 5px;
+
+}
+
+#toc-full li,
+#markdown-toc li {
+	padding: 0px;
+        margin-left: 5px;
+        list-style-position: outside;
+}
+
+#toc-full li ul,
+#markdown-toc li ul {
+	padding: 0px;
+        margin-left: 15px;
+        list-style-type: disc;
+}
+
+#toc-full li ul li ul,
+#markdown-toc li ul li ul {
+	list-style-type: square;
+}
+
+
+/**
+ * Tables
+ */
+table, th, td {
+	border: solid 2px;
+	margin-left: 35px;
+        margin-bottom: 15px;
+        padding: 5px;
+	border-spacing: 0px;
+        border-collapse: collapse;
+}
+
+th { background-color: #f0f0ff; }
+tr, td, th {
+        margin: 0px;
+}

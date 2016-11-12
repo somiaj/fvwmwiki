@@ -1,0 +1,24 @@
+---
+layout : wiki
+title : Config
+type : main
+weight : 1000
+description : |
+  These pages contain information about the Fvwm config file
+  ($HOME/.fvwm/config). These pages describe some of the
+  main aspects of the configuration file and provide details
+  on writing custom functions.
+
+---
+<h1>FVWM Config</h1>
+
+<p>Here is the list of pages about configuration:</p>
+
+{% assign pages = site.pages | where:"type","config" | sort:"weight" %}
+{% for mypage in pages reversed %}
+  <p class="title-indent">
+  <a href="{{ mypage.url | prepend: site.baseurl }}">
+  {{ mypage.url | remove: "Config" | remove: "/" }}</a><br>
+  {{ mypage.description }}
+  </p>
+{% endfor %}

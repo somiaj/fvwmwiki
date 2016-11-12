@@ -1,0 +1,43 @@
+---
+layout : wiki
+title : Functions
+type : config
+weight : 550
+description : |
+  Functions are a way to string a series of commands together
+  to preform a given task. There are multiple pages about
+  functions including:
+  <a href="/wiki/Config/ComplexFunctions">ComplexFunctions</a>,
+  <a href="/wiki/Config/FunctionContext">FunctionContext</a>,
+  <a href="/wiki/Config/FunctionSynchronisation">FunctionSynchronisation</a>,
+  <a href="/wiki/Config/FunctionTips">FunctionTips</a>, and
+  <a href="/wiki/Config/StartFunction">StartFunction</a>.
+
+---
+<h1>FVWM Functions</h1>
+
+<p>Functions can be used to achieve lots of different tasks. The
+basic syntax for a function is:</p>
+
+{% highlight fvwm %}
+#####
+# DestroyFunc FuncName
+# AddToFunc   FuncName
+# + I (Action to happen Immediately)
+# + C (Action to happen on a mouse Click)
+# + D (Action to happen on a mouse Double click)
+# + H (Action to happen on a mouse Hold)
+# + M (Action to happen on a mouse Motion)
+###########
+{% endhighlight %}
+
+<p>The following are a list of pages about Functions.</p>
+
+{% assign pages = site.pages | where:"type","function" | sort:"weight" %}
+{% for mypage in pages reversed %}
+  <p class="title-indent">
+  <a href="{{ mypage.url | prepend: site.baseurl }}">
+  {{ mypage.url | remove: "Config" | remove: "/" }}</a><br>
+  {{ mypage.description }}
+  </p>
+{% endfor %}
