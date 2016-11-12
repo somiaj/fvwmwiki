@@ -18,3 +18,7 @@ highlighter: pygments
 
 kramdown:
   input: GFM
+
+exclude:
+  - FvwmLexer/
+
