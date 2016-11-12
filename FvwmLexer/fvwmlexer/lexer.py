@@ -17,7 +17,7 @@ from pygments.token import *
 __all__ = ['FvwmLexer']
 
 class FvwmLexer(RegexLexer):
-    name = "f2vwm"
+    name = "Fvwm"
     aliases = ['fvwm']
     filenames = ['*.fvwm2rc']
 
