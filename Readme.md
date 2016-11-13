@@ -61,8 +61,8 @@ are some notes.
 
   This will float the TOC to the right. To use a full width TOC use
 
-        * TOC
-        {:toc #toc-full}  
+      * TOC
+      {:toc #toc-full}  
 
 + To use syntax highlighting you need to put your configuration code between
   special code block as follows
@@ -81,7 +81,7 @@ are some notes.
 
       [/CookBook/MyRecipe]({{ "/CookBook/MyRecipe" | prepend: site.baseurl }})
 
-  This uses the variable site.baseurl from the \_config.yml file to expand the url
+  This uses the variable baseurl from the \_config.yml file to expand the url
   in the link.
 
 + Include any images or extra files for your page in the directory alongside the
@@ -94,7 +94,8 @@ are some notes.
   This is because the variable is not parsed through the markdown processor.
 
 + If you want to generate your own main page, look at the current ones for examples
-  on building a list from these variables.
+  on building a list from these variables. You need to use an index.html file to
+  generate lists you want to be able to use links from the description variable.
 
 ## Building the site with Jekyll
 
