@@ -28,7 +28,7 @@ a new page in one of the above lists first create a directory and index.md
 file for your page. For example if you wanted to put a new CookBook recipe,
 MyRecipe, you would create the following file
 
-    fvwmwiki/CookBook/My/Recipe/index.md
+    fvwmwiki/CookBook/MyRecipe/index.md
 
 Put the following front matter at the top of your index.md file
 
