@@ -56,13 +56,13 @@ are some notes.
 
 + To include a table of contents built from the markdown headers use
 
-      * TOC
-      {:toc}
+        * TOC
+        {:toc}
 
   This will float the TOC to the right. To use a full width TOC use
 
-      * TOC
-      {:toc #toc-full}  
+        * TOC
+        {:toc #toc-full}  
 
 + To use syntax highlighting you need to put your configuration code between
   special code block as follows
@@ -89,7 +89,7 @@ are some notes.
 
 + If you want to include links your description you must write them using html.
 
-      <a href="{{ "/CookBook/MyRecipe" | prepend: site.baseurl }}">/CookBook/MyRecipe</a>
+        <a href="{{ "/CookBook/MyRecipe" | prepend: site.baseurl }}">/CookBook/MyRecipe</a>
 
   This is because the variable is not parsed through the markdown processor.
 
