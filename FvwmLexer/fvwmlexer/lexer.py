@@ -11,8 +11,12 @@
 # verify if it is correct or not.
 #
 
+import re
+
 from pygments.lexer import RegexLexer, include, words, bygroups
 from pygments.token import *
+
+from pygments.lexers._openedge_builtins import OPENEDGEKEYWORDS
 
 __all__ = ['FvwmLexer']
 
@@ -21,20 +25,21 @@ class FvwmLexer(RegexLexer):
     aliases = ['fvwm']
     filenames = ['*.fvwm2rc']
 
+    flags = re.IGNORECASE | re.MULTILINE
 
     # Highlight: Keyword
-    Command = ('Silent', 'Beep')
+    Command = ('Silent', 'Beep', 'Nop', 'RaiseLower')
     # Highlight: Keyword Name
     CommandName = ('DestroyFunc', 'DestroyMenu', 'InfoStoreRemove',
-                   'DestroyDecor', 'UseDecor', 'UnsetEnv', 'Popup',
-                   'AddToDecor')
+                   'DestroyDecor', 'UnsetEnv', 'AddToDecor',
+                   'AddToMenu', 'AddToFunc')
     # Highlight: Keyword Name String
     CommandNameString = ('InfoStoreAdd', 'SetEnv')
     # Highlight: Keyword (input)
     CommandInput = ('Exec', 'PipeRead', 'Break', 'Raise', 'WindowShade',
                     'Maximize', 'Iconify', 'FlipFocus', 'Focus', 'State',
                     'Title', 'Refresh', 'Restart', 'Quit', 'WindowList',
-                    'Nop', 'Close', 'Delete', 'Destroy', 'Stick', 'Resize', 'Move',
+                    'Close', 'Delete', 'Destroy', 'Stick', 'Resize', 'Move',
                     'Lower', 'Layer', 'MoveToDesk', 'Echo', 'MoveThreshold',
                     'DesktopName', 'DesktopSize', 'EdgeScroll', 'EdgeResistance',
                     'EdgeThickness', 'EwmhBaseStruts', 'DefaultFont',
@@ -42,14 +47,35 @@ class FvwmLexer(RegexLexer):
                     'IgnoreModifiers', 'ClickTime', 'MoveThreshold', 'GotoDesk',
                     'ImagePath', 'DefaultColorset', 'StrokeFunc', 'WarpToWindow',
                     'Schedule', 'Deschedule', 'MoveToPage', 'BugOpts', 'Read',
-                    'GotoDeskAndPage')
+                    'GotoDeskAndPage', 'WindowList', 'Read', 'AnimatedMove',
+                    'Wait')
     # Highlight: Keyword Name (input)
-    CommandNameInput = ('SendToModule', 'Module', 'Menu', 'Function', 'KillModule')
+    CommandNameInput = ('SendToModule', 'Module', 'Menu', 'Function', 'KillModule',
+                        'Popup', 'Mouse', 'Colorset')
 
     # Highlight: Keyword (conditions)
     Conditional = ('Test', 'TestRc', 'Current', 'All', 'ThisWindow', 'Next',
                        'Prev', 'Any', 'None', 'Pick', 'PointerWindow', 'WindowList')
 
+    DecorStates = ('ActiveUp', 'ActiveDown', 'Active', 'InactiveUp', 'InactiveDown',
+                   'Inactive', 'ToggledActiveUp', 'ToggledActiveDown', 'ToggledActive',
+                   'ToggledInactiveUp', 'ToggledInactiveDown', 'ToggledInactive',
+                   'AllNormal', 'AllToggled', 'AllActive', 'AllInactive', 'AllUp', 'AllDown',
+                   'AllActiveUp', 'AllActiveDown', 'AllIncativeUp', 'AllInactiveDown',
+                   'State')
+    DecorStyles = ('MultiPixmap', 'Pixmap', 'AdjustedPixmap', 'ShrunkPixmap',
+                   'StretchedPixmap', 'TiledPixmap', 'HGradient', 'VGradient',
+                   '?Gradient', 'DGradient', 'BGradient', 'SGradient', 'CGradient',
+                   'RGradient', 'YGradient', 'Colorset', 'Solid', 'Simple', 'Default',
+                   'Vector', 'MiniIcon', 'Centered', 'LeftJustified', 'Height',
+                   'RightJustified', 'MinHeight', 'Style')
+    DecorNames = ('Main', 'LeftMain', 'RightMain', 'UnderText', 'LeftButtons',
+                  'LeftEnd', 'LeftOfText', 'RightOfText', 'RightEnd', 'RightButtons',
+                  'Buttons')
+    DecorFlags = ('Flat', 'Raised', 'Sunk', 'UseTitleStyle', 'UseBorderStyle',
+                  'MwmDecorMax', 'MwmDecorMin', 'MwmDecorStick', 'MwmDecorLayer',
+                  'MwmDecorMenu', 'MwmDecorStick', 'Clear', 'HiddenHandles',
+                  'NoInset', 'Flag')
 
     tokens = {
         # Common Filters
@@ -57,6 +83,31 @@ class FvwmLexer(RegexLexer):
             (r'\$\[[a-zA-Z0-9*_\-.]+\]', Name.Variable),
             (r'\$[a-zA-Z0-9*_\-.]*', Name.Variable),
         ],
+        'commands': [
+            (words(Command, suffix="($|\s+)"), Keyword),
+            (words(CommandName, suffix="(\s*$|\s+\S+)"),
+             bygroups(Keyword, Name)),
+            (words(CommandNameString, suffix="(\s+\S+\s+)(.*)"),
+             bygroups(Keyword, Name, String)),
+            (words(CommandInput, suffix='$'), Keyword),
+            (words(CommandInput, suffix='\s+'), Keyword, 'input'),
+            (words(CommandNameInput, suffix='$'), Keyword),
+            (words(CommandNameInput, suffix='(\s+\S+)'),
+             bygroups(Keyword, Name), 'input'),
+        ],
+        'commands-input': [
+            (words(Command, suffix="($|\s+)"), Keyword),
+            (words(CommandName, suffix="(\s+\S+)"),
+             bygroups(Keyword, Name)),
+            (words(CommandName, suffix="\s*$"), Keyword),
+            (words(CommandNameString, suffix="(\s+\S+\s+)(.*)"),
+             bygroups(Keyword, Name, String)),
+            (words(CommandNameInput, suffix='\s*$'), Keyword),
+            (words(CommandNameInput, suffix='(\s+\S+)'),
+             bygroups(Keyword, Name)),
+            (words(CommandInput, suffix='($|\s+)'), Keyword),
+        ],
+
 
         # Main Loop
         'root': [
@@ -77,16 +128,15 @@ class FvwmLexer(RegexLexer):
              bygroups(Keyword, Text), 'conditions'),
             (words(Conditional, suffix='\s+'), Keyword),
 
-            # Highlight Commands
-            (words(Command), Keyword),
-            (words(CommandNameString, suffix='(\s+)(\S+)(\s+)(.*)$'),
-             bygroups(Keyword, Text, Name, Text, String)),
-            (words(CommandName, suffix='(\s+)(\S+)'), bygroups(Keyword, Text, Name)),
-            (words(CommandNameInput, suffix='(\s+)(\S+)'),
-             bygroups(Keyword, Text, Name), 'input'),
-            (words(CommandInput, suffix='$'), Keyword),
-            (words(CommandInput, suffix='\s+'), Keyword, 'input'),
+            # Window Styles
+            (r'(\+\s+)?(ButtonStyle\s+)(\S+)(\s+-\s+)',
+             bygroups(Text, Keyword, Name, Keyword), 'decor3'),
+            (r'(\+\s+)?(ButtonStyle|AddButtonStyle)(\s+\w+\s+)',
+             bygroups(Text, Keyword, Name), 'decor'),
+            (r'(\+\s+)?(TitleStyle|AddTitleStyle|BorderStyle|ButtonStyle|AddButtonStyle)(\s+)',
+             bygroups(Text, Keyword, Text), 'decor'),
 
+            
             # AddToFunc Syntax
             (r'(AddToFunc\s+)([a-zA-Z0-9]+)(\s+[ICDHM])',
              bygroups(Keyword, Name, String)),
@@ -95,7 +145,7 @@ class FvwmLexer(RegexLexer):
             (r'(\+\s+)([ICDHM])', bygroups(Text, String)),
 
             # Menus
-            (r'(AddToMenu\s+)([a-zA-Z0-9]+)$', bygroups(Keyword, Name)),
+            (r'(AddToMenu\s+)([a-zA-Z0-9]+\s*\n)', bygroups(Keyword, Name)),
             (r'(AddToMenu\s+)([a-zA-Z0-9]+)(\s)',
              bygroups(Keyword, Name, Text), 'menuitem'),
             (r'\+\s+', Text, 'menuitem'),
@@ -111,30 +161,57 @@ class FvwmLexer(RegexLexer):
              bygroups(Keyword, String.Other)),
 
             # Module Alias
-            (r'(DestroyModuleConfig\s+)([^:]+)(:\s*)(\S+)$',
+            (r'(DestroyModuleConfig\s+)([^:]+)(:\s*)(\S+\s*\n)',
              bygroups(Keyword, Name.Entity, Text, String.Other)),
             (r'(\*[a-zA-Z0-9\-$]+:\s+)(\()([^,\)]+)',
              bygroups(Name.Entity, Text, String.Other ), 'buttons'),
             (r'(\*[a-zA-Z0-9\-$]+:\s+)(\S+)', bygroups(Name.Entity, Keyword), 'input'),
 
+           # Highlight Commands
+            include('commands'),
+
             # No Match: Highlight as Name (input).
             (r'[^\s\n]+', Name, 'input')
         ],
         # Style state 
-        # Items are ended by commas. Items are Highlisted as
-        #   Default: Keyword Input,
-        #   FvwmCommandName: Keyword Name,
-        #   FvwmCommandNameString: Keyword Name String,
         # Ends at new line. Can be exteded with \.
         'style': [
-            (r',(\s+)\\\n', Text),
-            (r'\n', Text, "#pop"),
-            (r',', Text),
+            (r'\\\n', Text),
+            (r'\s*\n', Text, "#pop"),
+            (r',\s+', Text),
             (r'\s+', Text),
-            (words(CommandName, suffix='(\s+)([^,\n\s]*)'),
-             bygroups(Keyword, Text, Name)),
-            (r'(!?[a-zA-Z0-9]*)([^,\n]*)', bygroups(Keyword, String.Other))
+            (r'(!?[a-zA-Z0-9]*)([^,\n]*)', bygroups(Keyword.Type, String.Other))
         ],
+        'decor': [
+            (r'\\\n', Text),
+            (r'\n', Text, "#pop"),
+            (r'\s*\)', Text, "#pop"),
+            (r'\s+', Text),
+            (words(DecorStates, suffix='($|\s+)'), String),
+            (words(DecorStyles, suffix='($|\s+)'), Keyword.Type),
+            (words(DecorNames, suffix='($|\s+)'), Name),
+            (r'--', Keyword, 'decor2'),
+            (r'-', String.Other),
+            (r'\(', Text, "#push"),
+            (r'[^\s()\-\n\\]+', String.Other),
+        ],
+        'decor2': [
+            (r'\\\n', Text),
+            (r'\)', Text, "#pop:2"),
+            (r'\s*\n', Text, "#pop:2"),
+            (r'\s+', Text),
+            (words(DecorFlags, prefix='(!)?', suffix='($|\s*)'), Keyword.Type),
+            (r'[^\s)\n\\]+', String.Other),
+        ],
+        'decor3': [
+            (r'\\\n', Text),
+            (r'\s*\n', Text, "#pop"),
+            (r'\s+', Text),
+            (words(DecorFlags, prefix='(!)?', suffix='($|\s*)'), Keyword.Type),
+            (r'[^\s\n\\]+', String.Other),
+        ],
+
+
         # Parses menu items for & and icons, %png% or *png*
         'menuitem': [
             (r'\s', Text, "#pop"),
@@ -174,6 +251,7 @@ class FvwmLexer(RegexLexer):
             (r'\)', Text, "#pop"),
             (r'\s+', Text),
             (r'\(', Text, "#push"),
+            include('strings'),
             (r'[^\)\n]*', String.Other)
         ],
         # Condition List
@@ -186,7 +264,7 @@ class FvwmLexer(RegexLexer):
             (r'(!?[a-zA-Z0-9_]+)', Name.Attribute, 'inputcondition')
         ],
         'inputcondition': [
-           (r'\n', Text, "#pop:2"),
+           (r'\s*\n', Text, "#pop:2"),
            (r'\)', Text, "#pop:2"),
            (r',', Text, "#pop"),
            (r'\s+', Text),
@@ -196,17 +274,21 @@ class FvwmLexer(RegexLexer):
         # Input List
         'input': [
            (r'\\\n', Text),
-           (r'\n', Text, "#pop"),
+           (r'\s*\n', Text, "#pop"),
            (r'\s+', Text),
+           (r'["\'()]', Text),
+           include('commands-input'),
            include('strings'),
-           (r'[^\n\$\\]+', String.Other)
+           (r'[^\n\s$\\"\'()]+', String.Other)
         ],
         'input2': [
            (r'\\\n', Text),
-           (r'\n', Text, "#pop:2"),
+           (r'\s*\n', Text, "#pop:2"),
            (r'\s+', Text),
+           (r'["\'()]', Text),
+           include('commands-input'),
            include('strings'),
-           (r'[^\\\n\$]+', String.Other),
+           (r'[^\\\n$\s"\'()]+', String.Other),
         ],
 
     }

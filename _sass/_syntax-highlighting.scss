@@ -11,7 +11,7 @@
 
 // Used
     .err   { color: #000 } // Error               
-//    .err   { background-color: #e3d2d2 } // Uncomment to Debug
+    .err   { background-color: #e3d2d2 } // Uncomment to Debug
 
     .c     { color: #00f; font-style: italic } // Comment
     .k     { color: #a03; font-weight: bold } // Keyword
@@ -20,6 +20,7 @@
     .s     { color: #0aa; font-weight: bold } // String (Quotes)
     .sx    { color: #aa0; } // String.Other (Input Text)
     .ni    { color: #a0a; font-weight: bold } // Name.Entity (Module Alias)
+    .kt    { color: #458; font-weight: bold } // Keyword.Type                                  
 
 
 // Unused
@@ -45,7 +46,6 @@
     .kd    { font-weight: bold } // Keyword.Declaration
     .kp    { font-weight: bold } // Keyword.Pseudo
     .kr    { font-weight: bold } // Keyword.Reserved
-    .kt    { color: #458; font-weight: bold } // Keyword.Type
     .m     { color: #099 } // Literal.Number
     .na    { color: #008080 } // Name.Attribute
     .nb    { color: #0086B3 } // Name.Builtin

@@ -4,4 +4,4 @@ FvwmLexer/fvwmlexer.egg-info/
 FvwmLexer/fvwmlexer/__init__.pyc
 FvwmLexer/fvwmlexer/lexer.pyc
 fvwmlexer.egg-info/
-.*swp
+*swp

@@ -1,0 +1,35 @@
+<html>
+  <head>
+	<title>Help for A Simple FVWM Vector Buttons Viewer</title>
+	<style>
+	  body { background: #ffff9c; }
+	  pre { margin-left: 4em; }
+	</style>
+  </head>
+
+  <body>
+	<p>
+	  <tt>Ctrl+Enter</tt> -- Draw (works only when cursor is in the
+	  textarea)
+	</p>
+
+	<p>
+	  <b>Strict</b> input is equal to FVWM spec. <b>Light</b> is a
+	  non-standard and designed only for easy typing.
+	</p>
+
+	<p>
+	  A minimum example of <b>light</b> input:
+
+	  <pre>0 0 1, 100 100 0</pre>
+	  
+	  This will draw a single diagonal line from top left corner
+	  to bottom right. The FVWM equivalent is:
+
+	  <pre>Vector 2 0x0@1 100x100@0</pre>
+
+	  If X or Y coordinate appears to be < 0 or > 100, it will be
+	  substituted with 0, so be attentive.
+	</p>
+  </body>
+</html>

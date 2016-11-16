@@ -43,7 +43,7 @@ ul, ol, dl, figure,
  * Images
  */
 img {
-    max-width: 100%;
+//    max-width: 100%;
     vertical-align: middle;
 }
 
@@ -82,7 +82,7 @@ li {
  * Headings
  */
 h1, h2, h3, h4, h5, h6 {
-    font-weight: $base-font-weight;
+    font-weight: bold;
 }
 
 

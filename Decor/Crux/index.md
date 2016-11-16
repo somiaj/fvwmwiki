@@ -2,6 +2,11 @@
 layout : wiki
 title : Crux Decor Example
 type : decor
+weight : 900
+description : |
+  This decor is from the Sawfish theme Crux. It is a good example of
+  mixing images, gradients and vector buttons for the final window look.
+
 ---
 # Crux Decoration example
 

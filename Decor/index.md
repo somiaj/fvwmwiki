@@ -9,7 +9,16 @@ description : |
 ---
 # FVWM Decors
 
-Here is the list of Decors:
+A Decor is a collection of configurations for the looks of the windows.
+These pages are a collection of example decors that can be used in your
+setup. Most of these decors were adopted from
+[fvwm-themes](http://fvwm-themes.sourceforge.net) and are available here
+as examples along with the images with any images needed.
+
+These are only examples, for a description of a decor see
+[/Config/Decor]({{ "/Config/Decor" | prepend: site.baseurl }})
+
+## Decors
 
 {% assign pages = site.pages | where:"type","decor" | sort:"weight" %}
 {% for mypage in pages reversed %}

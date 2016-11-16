@@ -122,3 +122,24 @@ th { background-color: #f0f0ff; }
 tr, td, th {
         margin: 0px;
 }
+
+/**
+ * VectorButtons JavaScript
+ */
+.error {
+	background: red;
+	color: white;
+	padding: 6px;
+	font-family: sans-serif;
+}
+#result_src {
+	background: #e3e3e3;
+	border: 1px solid black;
+	font-family: monospace;
+	padding: 3px;
+}
+canvas {
+	vertical-align: top;
+	border: 1px solid blue;
+}
+
