@@ -184,7 +184,7 @@ class FvwmLexer(RegexLexer):
         ],
         'decor': [
             (r'\\\n', Text),
-            (r'\n', Text, "#pop"),
+            (r'\s*\n', Text, "#pop"),
             (r'\s*\)', Text, "#pop"),
             (r'\s+', Text),
             (words(DecorStates, suffix='($|\s+)'), String),
