@@ -2,9 +2,11 @@
 layout : wiki
 title : Decor
 type : main
-weight : 600
+weight : 950
 description : |
-  Information about how to decorate your windows.
+  Here is a collection of different window Decors examples for Fvwm.
+  They range from Vector decors using Fvwm built-ins to MultiPixmap
+  Decors with the .png image files inlucded.
 
 ---
 # FVWM Decors
@@ -15,8 +17,9 @@ setup. Most of these decors were adopted from
 [fvwm-themes](http://fvwm-themes.sourceforge.net) and are available here
 as examples along with the images with any images needed.
 
-These are only examples, for a description of a decor see
-[/Config/Decor]({{ "/Config/Decor" | prepend: site.baseurl }})
+These are only examples, for configuration descriptions see
++ [/Config/Decor]({{ "/Config/Decor" | prepend: site.baseurl }})
++ [/Config/VectorButtons]({{ "/Config/VectorButtons" | prepend: site.baseurl }})
 
 ## Decors
 

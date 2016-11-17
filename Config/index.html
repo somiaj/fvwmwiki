@@ -4,15 +4,13 @@ title : Config
 type : main
 weight : 1000
 description : |
-  These pages contain information about the Fvwm config file
-  ($HOME/.fvwm/config). These pages describe some of the
-  main aspects of the configuration file and provide details
-  on writing custom functions.
+  These pages cover the different aspects of the Fvwm configuration
+  file.
 
 ---
 <h1>FVWM Config</h1>
 
-<p>Here is the list of pages about configuration:</p>
+<p>Here is the list of pages about Fvwm configuration:</p>
 
 {% assign pages = site.pages | where:"type","config" | sort:"weight" %}
 {% for mypage in pages reversed %}

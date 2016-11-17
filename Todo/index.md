@@ -45,7 +45,7 @@ Pages that need to be updated
 + [/NewToFvwm](/wiki/NewToFvwm) -- Idea: include a description of the default config
   and maybe point to some of the pages that would be useful to someone starting
   with the default config and editing it.
-+ [wiki/WindowManager/](/wiki/WindowManager)
++ [/WindowManager](/wiki/WindowManager)
 + [/Modules/\*](/wiki/Modules) -- Most the modules don't have much more than a
   description. These need to all be updated and include some examples of different
   pannels and things that can be done with modules.
