@@ -51,7 +51,7 @@ class FvwmLexer(RegexLexer):
                     'Wait')
     # Highlight: Keyword Name (input)
     CommandNameInput = ('SendToModule', 'Module', 'Menu', 'Function', 'KillModule',
-                        'Popup', 'Mouse', 'Colorset')
+                        'Popup', 'Mouse', 'Colorset', 'Key')
 
     # Highlight: Keyword (conditions)
     Conditional = ('Test', 'TestRc', 'Current', 'All', 'ThisWindow', 'Next',
