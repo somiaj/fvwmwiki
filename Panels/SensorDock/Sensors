@@ -1,0 +1,127 @@
+WindowTitle {Sensors}
+WindowSize  60 90
+Font "xft:Sans:size=8"
+
+Init
+ Begin
+  Set $DEG = {°}
+  Set $CPUtemp = (StrCopy (GetOutput {exec sensors} 15 2) 2 3) $DEG
+  Set $CPUfan = (GetOutput {exec sensors} 12 2)
+  Set $MBtemp = (StrCopy (GetOutput {exec sensors} 16 2) 2 3) $DEG
+  Set $Chassis = (GetOutput {exec sensors} 13 2)
+  Set $GPUtemp = (StrCopy (GetOutput {exec nvidia-settings -q gpucoretemp | grep ukkosta} 1 4) 1 2) $DEG
+  Set $GPUfan = (StrCopy (GetOutput {exec nvidia-settings -q [fan:0]/gpucurrentfanspeed | grep ukkosta} 1 4) 1 2) {%}
+
+  ChangeTitle 1 $CPUtemp
+  ChangeTitle 2 $CPUfan
+  ChangeTitle 5 $MBtemp
+  ChangeTitle 6 $Chassis
+  ChangeTitle 3 $GPUtemp
+  ChangeTitle 4 $GPUfan
+End
+
+PeriodicTasks
+ Begin 
+  If (RemainderOfDiv (GetTime) 15)==0 Then
+  Begin
+    Set $DEG = {°}
+    Set $CPUtemp = (StrCopy (GetOutput {exec sensors} 15 2) 2 3) $DEG
+    Set $CPUfan = (GetOutput {exec sensors} 12 2)
+    Set $MBtemp = (StrCopy (GetOutput {exec sensors} 16 2) 2 3) $DEG
+    Set $Chassis = (GetOutput {exec sensors} 13 2)
+    Set $GPUtemp = (StrCopy (GetOutput {exec nvidia-settings -q gpucoretemp | grep ukkosta} 1 4) 1 2) $DEG
+    Set $GPUfan = (StrCopy (GetOutput {exec nvidia-settings -q [fan:0]/gpucurrentfanspeed | grep ukkosta} 1 4) 1 2) {%}
+
+    ChangeTitle 1 $CPUtemp
+    ChangeTitle 2 $CPUfan
+    ChangeTitle 5 $MBtemp
+    ChangeTitle 6 $Chassis
+    ChangeTitle 3 $GPUtemp
+    ChangeTitle 4 $GPUfan
+  End
+End
+
+Widget 1
+Property
+ Position 0 0
+ Size 60 15
+ Type ItemDraw
+ Flags NoReliefString
+ Title {}
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+
+Widget 2
+Property
+ Position 0 15
+ Size 60 15
+ Type ItemDraw
+ Flags NoReliefString
+ Title {}
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+
+Widget 3
+Property
+ Position 0 30
+ Size 60 15
+ Type ItemDraw
+ Flags NoReliefString
+ Title {}
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+
+Widget 4
+Property
+ Position 0 45
+ Size 60 15
+ Type ItemDraw
+ Flags NoReliefString
+ Title {}
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+
+Widget 5
+Property
+ Position 0 60
+ Size 60 15
+ Type ItemDraw
+ Flags NoReliefString
+ Title {}
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+
+Widget 6
+Property
+ Position 0 75
+ Size 60 15
+ Type ItemDraw
+ Flags NoReliefString
+ Title {}
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+
