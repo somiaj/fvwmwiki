@@ -21,6 +21,8 @@ The wiki is currently divided into the following main pages.
 | /Tips | tip |
 | /Modules | module |
 | /Decor | decor |
+| /Panels | panel |
+| /Menus | menu |
 | /irc | irc |
 
 Each main page generates a list of links to pages based on their type. To create
@@ -114,15 +116,38 @@ The static .html for the Wiki is built in fvwmwiki/\_site. If using
 `jekyll serve`, you will be given a local address to view the Wiki
 on, and any changes you made will be built and updated to be viewed.
 
-By default syntax highlighting is disabled during the build. To enable
-syntax highlighting, you need to install the FvwmLexer and follow the
-steps below. Your mileage may very.
+To enable syntax highlighting you will have to install a custom lexer
+following the steps below.
 
 ## Syntax Highlighting
 
-The Fvwm configuration syntax highlighting is done through using pygments
-(<http://pygments.org/>), which is no longer the default highlighter used
-by Jekyll 3 onwards. To use pygments you will need to have the python2
+There is now both a python pygments and ruby rouge lexer for FVWM.
+From Jekyll 3 onwards rouge is the default and the one I plan to
+continue to work on. The pygments FvwmLexer is left as is.
+
+### Syntax Highlighting with Rouge
+
+<https://github.com/somiaj/rouge> is a fork of Rouge with a lexer
+for Fvwm. To install this lexer I had to do the following.
+
++ Clone the repo: `git clone https://github.com/somiaj/rouge`
++ Install ruby, jekyll, bundler
++ Install build depends, from the rouge source directory:
+  `bundle install`
+
++ Build the source: `rake build`
++ Install the resulting .gem file: `gem install rouge-2.0.7.gem`
++ You might have to modify jekyll to use the correct version of rouge.
+  Find the jekyll specifications file on your system,
+  `/var/lib/gems/2.3.0/specifications/jekyll-3.3.1.gemspec` on my system,
+  then edit the runtime dependency for rogue to be `~> 2.0.7`
+
+  I also had to edit the dependencies for kramdown in a similar fashion
+  to above.
+
+### Syntax Highlighting with Pygments
+
+To use pygments you will need to have the python2
 package pymgnets installed along with the ruby package pygments.rb to
 translate the python to ruby for jekyll.
 
@@ -159,9 +184,4 @@ You can uninstall the lexer with easy_install
 
 This will leave an fvwmlexer.egg-link file on your system
 (in /usr/local/lib/python/dist-packages here).
-
-__Todo__: Convert the pygment lexer to rogue (default highlighter
-written in ruby) and get it included in the rouge source
-<https://github.com/jneen/rouge> so the highlighting can be used
-on github.io.
 
