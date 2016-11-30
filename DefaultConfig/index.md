@@ -5,7 +5,7 @@ title : DefaultConfig
 
 # Default Config
 
-{% highlight fvwm linenos %}
+{% highlight fvwm %}
 {% include_relative config %}
 {% endhighlight %}
 
