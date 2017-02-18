@@ -14,10 +14,11 @@ github_username: somiaj
 
 # Build settings
 markdown: kramdown
+highlighter: none
 
 kramdown:
   input: GFM
-  syntax_highlighter: rouge
+#  syntax_highlighter: rogue
 
 exclude:
   - FvwmLexer/
