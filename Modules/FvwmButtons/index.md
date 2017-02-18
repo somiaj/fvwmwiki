@@ -14,16 +14,34 @@ description : |
 
 ## Module Description
 
-The FvwmButtons module provides a window of buttons which sits on the X
-terminal's root  window.  The user  can  press  the  buttons at any time,
-and trigger invocation of a user-specified command by the window manager.
-FvwmButtons only works when fvwm is used as the window manager.
+The FvwmButtons module provides a window of buttons which can be used
+to build different type of [/Panels]({{ "/Panels" | prepend: site.baseurl }}).
+The window is rectangular and can be split into different rectangular
+buttons of varying sizes. Each button can contain text, icons, and even
+Swallow other applications.
 
-The buttonbox can be of any configuration or geometry, and can have
-monochrome or color icons to rep­ resent  the actions which would be
-invoked.  Even other applications can be 'swallowed' by the button bar.
+Buttons can be configured to change their text/icon/colorset when
+Active and preform different actions when clicked. Additionally
+with use of SendToModule, buttons can be changed by other aspects
+of Fvwm.
 
-Panels that are opened on a button press are available too.  See
-CreatingPanels for details.
+For a full list of FvwmButtons configuration options see the
+[manpage](http://fvwm.org/documentation/manpages/FvwmButtons.html)
 
-## Tips
+## Layout
+
+To configure FvwnButtons you need to first determine the layout of the
+buttons. Calculate out the over all size (width by height in pixels) of
+the 
+
+This includes figuring out the size of the window that will
+contain the buttons and the size of the smallest button.
+When configuring FvwmButtons, first draw the layout of the buttons.
+You will want to think about the shape of the buttons, and what sizes
+you are going to need for the buttons.
+
+## Active Buttons
+
+## Actions
+
+## Examples
